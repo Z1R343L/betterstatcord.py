@@ -93,9 +93,14 @@ class StatcordClient:
         if ctx.command_failed:
             return
 
+        if isinstance(ctx, 'ApplicationCommandInteraction'):
+            command_name = f'/{ctx.data.name}'
+        else:
+            command_name = ctx.command.name
+
         self._command_count += 1
         self._active_users.add(ctx.author.id)
-        self._popular_commands[ctx.command.name] += 1
+        self._popular_commands[command_name] += 1
 
     async def _post_loop(self) -> None:
         """The stat posting loop which posts stats to the Statcord API."""
