@@ -93,7 +93,7 @@ class StatcordClient:
         if ctx.command_failed:
             return
 
-        if isinstance(ctx, 'ApplicationCommandInteraction'):
+        if 'ApplicationCommandInteraction' in type(ctx):
             command_name = f'/{ctx.data.name}'
         else:
             command_name = ctx.command.name
