@@ -61,6 +61,7 @@ class StatcordClient:
 
         # add on_command handler
         bot.add_listener(self._command_ran, name="on_command")
+        bot.add_listener(self._command_ran, name="on_slash_command")
 
         # start stat posting loop
         self._post_loop_task = bot.loop.create_task(self._post_loop())
